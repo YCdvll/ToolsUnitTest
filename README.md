@@ -2,5 +2,5 @@
 
 ### UnitTest for fun
 
-- test stat
-- test roulette
+- test random stat
+- test Casino Roulette
