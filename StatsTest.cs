@@ -1,10 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-
 namespace ToolsUnitTest
 {
     [TestClass]
@@ -21,12 +14,10 @@ namespace ToolsUnitTest
         }
 
 
-        private int BoucleRandom(int min, int max, int boucle)
+        private Tuple<int, int> BoucleRandom(int min, int max, int boucle)
         {
             var randFunc = new Random();
             var listNum = new List<int> { };
-            var result = 0;
-            var resultNum = new List<int>();
 
             for (var i = 0; i < boucle; i++)
             {
@@ -34,11 +25,8 @@ namespace ToolsUnitTest
                 listNum.Add(random);
             }
 
-            var listGroupe = listNum.GroupBy(x => x).OrderByDescending(x => x.Key);
-            var mostOccuranceNum = listNum.GroupBy(i => i).OrderByDescending(grp => grp.Count()).Select(grp => grp.Key).First();
-            Debug.WriteLine(listGroupe);
-
-            return result;
+            var occuranceNum = listNum.GroupBy(i => i).OrderByDescending(grp => grp.Count()).First();
+            return Tuple.Create(occuranceNum.Key, occuranceNum.Count());
         }
     }
 }
